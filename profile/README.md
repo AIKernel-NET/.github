@@ -29,7 +29,7 @@ AIKernel.NET は、次の 4 層スタックとして構成されます。
 
 - **L4: Semantic App**
 - **L3: AI Agent / AAU**  
-  **AAU = Autonomous Agent Unit**
+  **AAU = Autonomous Agent Unit（自律型エージェント実行単位）**
 - **L2: Pipeline**
 - **L1: Provider**
 
@@ -75,7 +75,7 @@ An **AI Agent** is an independent intelligence unit specialized for a specific p
 **AAU** stands for **Autonomous Agent Unit**.  
 It represents an Agent as a governed executable unit that can encapsulate Pipelines, Providers, and runtime context.
 
-**AAU** は **Autonomous Agent Unit** の略です。  
+**AAU** は **Autonomous Agent Unit（自律型エージェント実行単位）** の略です。  
 Agent を、Pipeline、Provider、実行時コンテキストを内包できる、ガバナンス可能な実行単位として表します。
 
 An AAU can be loaded from the VFS and executed independently within the Semantic Context OS.
@@ -169,10 +169,9 @@ The long-term vision includes:
 
 ---
 
-## Representative Repositories
+## Representative Repository
 
 - [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET)
-- [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core)
 
 ---
 
