@@ -2,10 +2,12 @@
 
 <img src="https://raw.githubusercontent.com/AIKernel-NET/AIKernel.NET/main/docs/assets/aikernel-logo.png" alt="AIKernel.NET Logo" width="180" />
 
-# AIKernel.NET — Semantic Context OS
+<h1>AIKernel.NET — Semantic Context OS</h1>
 
-**An operating system for AI applications, built around Semantic Context.**  
-**Semantic Context を中心に設計された、AI アプリケーションのためのオペレーティングシステム。**
+<p>
+  <strong>An operating system for AI applications, designed around Semantic Context.</strong><br />
+  <strong>Semantic Context を中心に設計された、AI アプリケーションのためのオペレーティングシステム。</strong>
+</p>
 
 </div>
 
@@ -14,16 +16,16 @@
 **AIKernel.NET** is an OS-like architecture for AI applications.
 
 AIKernel.NET does not define individual AI features themselves.  
-It defines the deterministic execution context in which AI capabilities, reasoning flows, agents, and applications can operate consistently.
+It defines the deterministic execution context in which AI capabilities, reasoning workflows, agents, and applications can operate consistently.
 
 **AIKernel.NET** は、AI アプリケーションのための OS 的アーキテクチャです。
 
 AIKernel.NET は、個別の AI 機能そのものを定義するものではありません。  
-AI の能力、推論フロー、Agent、アプリケーションが一貫して動作するための、決定論的な実行コンテキストを定義します。
+AI の能力、推論ワークフロー、Agent、アプリケーションが一貫して動作するための、決定論的な実行コンテキストを定義します。
 
 AIKernel.NET is organized as a four-layer stack:
 
-AIKernel.NET は、次の 4 層のスタックとして構成されます。
+AIKernel.NET は、次の 4 層スタックとして構成されます。
 
 - **L4: Semantic App**
 - **L3: AI Agent / AAU**  
@@ -39,7 +41,9 @@ Together, these layers form the foundation of the **Semantic Context OS**.
 
 ## AIKernel Stack — Sovereign Architecture
 
-**AIKernel Stack — Sovereign Architecture** は、Semantic Context を中心に、アプリケーション、Agent、推論フロー、Provider を分離して扱うための階層構造です。
+**AIKernel Stack — Sovereign Architecture** is a layered architecture for separating applications, agents, reasoning workflows, and providers around Semantic Context.
+
+**AIKernel Stack — Sovereign Architecture** は、Semantic Context を中心に、アプリケーション、Agent、推論ワークフロー、Provider を分離して扱うための階層構造です。
 
 ---
 
