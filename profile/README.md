@@ -1,20 +1,33 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/AIKernel-NET/AIKernel.NET/main/docs/assets/aikernel-logo.png" alt="AIKernel.NET Logo" width="160" />
+<img src="https://raw.githubusercontent.com/AIKernel-NET/AIKernel.NET/main/docs/assets/aikernel-logo.png" alt="AIKernel.NET Logo" width="180" />
 
 # AIKernel.NET — Semantic Context OS
 
-**AIKernel.NET is an AI operating system that treats Semantic Context as a first-class citizen.**  
-**AIKernel.NET は、「意味的文脈（Semantic Context）」を第一級市民として扱う AI オペレーティングシステムです。**
+**An operating system for AI applications, built around Semantic Context.**  
+**Semantic Context を中心に設計された、AI アプリケーションのためのオペレーティングシステム。**
 
 </div>
 
-AIKernel.NET provides a unified architecture for handling AI capabilities, reasoning workflows, intelligence units, and applications through a four-layer stack:
+---
 
-AIKernel.NET は、AI の能力・推論フロー・知能単位・アプリケーションを、4 層のスタックとして統一的に扱うためのアーキテクチャを提供します。
+**AIKernel.NET** is an OS-like architecture for AI applications.
+
+AIKernel.NET does not define individual AI features themselves.  
+It defines the deterministic execution context in which AI capabilities, reasoning flows, agents, and applications can operate consistently.
+
+**AIKernel.NET** は、AI アプリケーションのための OS 的アーキテクチャです。
+
+AIKernel.NET は、個別の AI 機能そのものを定義するものではありません。  
+AI の能力、推論フロー、Agent、アプリケーションが一貫して動作するための、決定論的な実行コンテキストを定義します。
+
+AIKernel.NET is organized as a four-layer stack:
+
+AIKernel.NET は、次の 4 層のスタックとして構成されます。
 
 - **L4: Semantic App**
-- **L3: AI Agent / AAU**
+- **L3: AI Agent / AAU**  
+  **AAU = Autonomous Agent Unit**
 - **L2: Pipeline**
 - **L1: Provider**
 
@@ -26,62 +39,66 @@ Together, these layers form the foundation of the **Semantic Context OS**.
 
 ## AIKernel Stack — Sovereign Architecture
 
-（AIKernel Stack —主権的アーキテクチャ）
+**AIKernel Stack — Sovereign Architecture** は、Semantic Context を中心に、アプリケーション、Agent、推論フロー、Provider を分離して扱うための階層構造です。
 
 ---
 
-### L4: Semantic App（セマンティック・アプリ）
+### L4: Semantic App — セマンティックアプリ
 
 A **Semantic App** is the top-level layer that transforms a user's **Semantic Intent** into value.
 
 **Semantic App** は、ユーザーの **Semantic Intent** を価値へ変換する最上位レイヤーです。
 
-It represents the concrete realization of a purpose by orchestrating one or more Agents.
+It represents the application-level realization of a purpose by coordinating one or more Agents.
 
-複数の Agent を束ね、目的を具体的な成果として具現化します。
+1 つ以上の Agent を統合し、目的をアプリケーションとして具体化します。
 
 - Converts user intent into meaningful outcomes  
   ユーザーの意図を意味のある成果へ変換する
 - Coordinates one or more Agents  
   1 つ以上の Agent を統合・調整する
-- Serves as the output layer of the Semantic Context OS  
-  Semantic Context OS の出口として機能する
+- Serves as the application layer of the Semantic Context OS  
+  Semantic Context OS のアプリケーション層として機能する
 
 ---
 
-###  L3: AI Agent / AAU
-（エージェント）
+### L3: AI Agent / AAU — Autonomous Agent Unit
 
 An **AI Agent** is an independent intelligence unit specialized for a specific purpose.
 
 **AI Agent** は、特定の目的に特化した独立した知能単位です。
 
-It encapsulates Pipelines and Providers, and can be loaded as an executable unit from the VFS.
+**AAU** stands for **Autonomous Agent Unit**.  
+It represents an Agent as a governed executable unit that can encapsulate Pipelines, Providers, and runtime context.
 
-Pipeline と Provider を内包し、VFS からロード可能な実行単位として扱われます。
+**AAU** は **Autonomous Agent Unit** の略です。  
+Agent を、Pipeline、Provider、実行時コンテキストを内包できる、ガバナンス可能な実行単位として表します。
 
-- Purpose-specific intelligence packet  
-  目的特化型の知能パケット
-- Encapsulates Pipelines and Providers  
-  Pipeline と Provider を内包する
-- Operates as an independent executable unit  
-  独立した実行単位として動作する
+An AAU can be loaded from the VFS and executed independently within the Semantic Context OS.
+
+AAU は VFS からロードされ、Semantic Context OS 内で独立した実行単位として扱われます。
+
+- Acts as a purpose-specific intelligence unit  
+  目的特化型の知能単位として機能する
+- Encapsulates Pipelines, Providers, and runtime context  
+  Pipeline、Provider、実行時コンテキストを内包する
+- Operates as a governed executable unit  
+  ガバナンス可能な実行単位として動作する
 
 ---
 
-### L2: Pipeline
-（パイプライン）
+### L2: Pipeline — パイプライン
 
 A **Pipeline** defines the logical reasoning workflow of an AI process.
 
 **Pipeline** は、AI プロセスにおける論理的な推論ワークフローを定義します。
 
-It describes how Providers are composed and executed to perform inference, retrieval, transformation, validation, or other AI-related operations.
+It describes how Providers are composed and executed to perform inference, retrieval, transformation, validation, and other AI-related operations.
 
 Provider をどのように組み合わせ、推論・検索・変換・検証などの処理を進めるかを表現します。
 
 - Defines the reasoning workflow  
-  推論の流れを定義する
+  推論ワークフローを定義する
 - Composes Providers into executable processes  
   Provider を実行可能なプロセスとして構成する
 - Separates logical execution from physical capabilities  
@@ -89,27 +106,24 @@ Provider をどのように組み合わせ、推論・検索・変換・検証�
 
 ---
 
-###  L1: Provider
-（プロバイダー）
+### L1: Provider — プロバイダー
 
 A **Provider** is the physical grounding layer of AIKernel.NET.
 
 **Provider** は、AIKernel.NET における物理的な接地レイヤーです。
 
-Providers expose concrete capabilities such as LLMs, embeddings, VFS access, RAG, secure credentials, and other external or internal resources.
+Providers expose concrete capabilities such as LLMs, embeddings, VFS access, RAG, secure credentials, and other internal or external resources.
 
-LLM、Embedding、VFS、RAG、SecureCredential など、外部または内部の具体的な能力を提供します。
+Provider は、LLM、Embedding、VFS、RAG、SecureCredential など、内部または外部の具体的な能力を提供します。
 
 - Provides concrete AI and infrastructure capabilities  
   AI およびインフラストラクチャの具体的な能力を提供する
-- Connects the OS to the outside world  
-  OS を外界と接続する
+- Connects the OS to models, data sources, and external systems  
+  OS をモデル、データソース、外部システムと接続する
 - Acts as the capability unit of the system  
   システムにおける能力ユニットとして機能する
 
 Examples:
-
-例:
 
 - LLM Provider
 - Embedding Provider
@@ -121,11 +135,9 @@ Examples:
 
 ## Vision: AIStore & Self-Extending AI
 
-（Vision: AIStore と自己拡張型 AI）
+AIKernel.NET aims to enable an ecosystem where AI capabilities, Agents, and applications can be composed, distributed, and extended.
 
-AIKernel.NET aims to enable an ecosystem where AI capabilities, intelligence units, and applications can be composed, distributed, and extended.
-
-AIKernel.NET は、AI の能力・知能単位・アプリケーションを構成し、配布し、拡張できるエコシステムの実現を目指します。
+AIKernel.NET は、AI の能力、Agent、アプリケーションを構成・配布・拡張できるエコシステムの実現を目指します。
 
 The long-term vision includes:
 
@@ -136,8 +148,8 @@ The long-term vision includes:
   再利用可能な AI 能力およびインフラ能力のマーケット。
 
 - **Agent Marketplace**  
-  A marketplace for purpose-specific intelligence packets.  
-  目的特化型の知能パケットを流通させるマーケット。
+  A marketplace for purpose-specific Agent units.  
+  目的特化型の Agent 単位を流通させるマーケット。
 
 - **Semantic App Marketplace**  
   A marketplace for AI applications built on Semantic Context.  
@@ -153,9 +165,7 @@ The long-term vision includes:
 
 ---
 
-## Representative Repository
-
-（代表リポジトリ）
+## Representative Repositories
 
 - [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET)
 - [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core)
@@ -163,14 +173,12 @@ The long-term vision includes:
 ---
 
 ## Documents
-（ドキュメント）
 
 - [AIKernel.NET Documentation](https://github.com/AIKernel-NET/AIKernel.NET/tree/main/docs)
 
 ---
 
 ## License
-（ ライセンス）
 
 AIKernel.NET is released under the MIT License.
 
