@@ -48,8 +48,8 @@ Capability リポジトリに分離され、CUDA / LibTorch / OS / RID ごとに
 | Runtime | `AIKernel.Common`, `AIKernel.Core`, `AIKernel.Kernel`, `AIKernel.Hosting` |
 | Providers | `AIKernel.Providers.MicrosoftAI` |
 | Testing | `AIKernel.TestKit` |
-| Python | `aikernel` |
-| CUDA Capability | `AIKernel.Cuda13.0.Libtorch2.12.win-x64` |
+| Python | `aikernel-net` / import `aikernel_net` |
+| CUDA Capability | NuGet: `AIKernel.Cuda13.0.Libtorch2.12.win-x64`; pip: `aikernel-cuda13-libtorch2-12-win-x64` |
 
 `AIKernel.Vfs` is not a separate package. VFS contracts belong to Abstractions,
 and implementation lives in Core/Kernel runtime packages.
@@ -71,7 +71,7 @@ dotnet add package AIKernel.Providers.MicrosoftAI --version 0.0.5
 ### Python Binding
 
 ```powershell
-pip install aikernel
+pip install aikernel-net
 ```
 
 The Python package is CPU-only by default and exposes the outer AIKernel API,
@@ -90,9 +90,30 @@ This package targets Windows `win-x64`, CUDA 13.0, and LibTorch 2.12.0.
 Other CUDA, LibTorch, OS, or RID combinations should be implemented as separate
 Capability repositories using the same public AIKernel contracts.
 
+NuGet packages are for C# consumers. Python wrappers are distributed through
+pip, not embedded in NuGet packages:
+
+```powershell
+pip install aikernel-cuda13-libtorch2-12-win-x64
+```
+
+The CUDA NuGet package is lightweight: managed assembly, native bridge,
+`loader.json`, and dynamic loading logic. LibTorch, CUDA, cuDNN, cuBLAS, and
+other large runtime DLLs are distributed as GitHub Release runtime archives.
+The CUDA pip package mirrors the lightweight surface for Python users by
+including the managed Capability DLL, native bridge, and `loader.json`; it also
+excludes the large runtime DLLs.
+
 この package は Windows `win-x64`、CUDA 13.0、LibTorch 2.12.0 を対象にします。
 他の CUDA / LibTorch / OS / RID の組み合わせは、同じ public AIKernel contracts に従う
 別 Capability リポジトリとして実装します。
+
+NuGet package は C# 利用者向けです。Python wrapper は NuGet に含めず、pip で配布します。
+CUDA NuGet package は軽量版であり、managed assembly、native bridge、`loader.json`、
+動的リンクロジックのみを含みます。LibTorch、CUDA、cuDNN、cuBLAS などの巨大 runtime
+DLL は GitHub Release の runtime archive として配布します。
+CUDA pip package も Python 利用者向けの軽量面を持ち、managed Capability DLL、
+native bridge、`loader.json` を含みますが、巨大 runtime DLL は含みません。
 
 ## Architecture
 
