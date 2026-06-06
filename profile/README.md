@@ -2,187 +2,131 @@
 
 <img src="https://raw.githubusercontent.com/AIKernel-NET/AIKernel.NET/main/docs/assets/aikernel-logo.png" alt="AIKernel.NET Logo" width="180" />
 
-<h1>AIKernel.NET — Semantic Context OS</h1>
+# AIKernel.NET
 
-<p>
-  <strong>An operating system for AI applications, designed around Semantic Context.</strong><br />
-  <strong>Semantic Context を中心に設計された、AI アプリケーションのためのオペレーティングシステム。</strong>
-</p>
+**Interface-led runtime architecture for semantic AI systems**
+**Semantic AI システムのための Interface-Led Runtime Architecture**
 
 </div>
 
 ---
 
-**AIKernel.NET** is an OS-like architecture for AI applications.
+AIKernel.NET defines a deterministic execution foundation for AI applications:
+contracts, monads, semantic DSLs, replay logs, capability routing, VFS/ROM
+semantics, and governed provider execution.
 
-AIKernel.NET does not define individual AI features themselves.  
-It defines the deterministic execution context in which AI capabilities, reasoning workflows, agents, and applications can operate consistently.
+AIKernel.NET は、AI アプリケーションのための決定論的な実行基盤を定義します。対象は
+Contracts、Monads、Semantic DSL、ReplayLog、Capability Routing、VFS/ROM
+セマンティクス、Governed Provider Execution です。
 
-**AIKernel.NET** は、AI アプリケーションのための OS 的アーキテクチャです。
+## Release Line
 
-AIKernel.NET は、個別の AI 機能そのものを定義するものではありません。  
-AI の能力、推論ワークフロー、Agent、アプリケーションが一貫して動作するための、決定論的な実行コンテキストを定義します。
+The current release line is **v0.0.5**.
 
-AIKernel.NET is organized as a four-layer stack:
+- **AIKernel.NET** provides the public contracts, DTOs, enums, and canonical documents.
+- **AIKernel.Core** provides the runtime implementation: Common monads, Core, Kernel, Hosting, providers, TestKit, and Python binding.
+- **AIKernel.Cuda13.0** provides the opt-in Windows CUDA capability package.
 
-AIKernel.NET は、次の 4 層スタックとして構成されます。
+Core packages are CUDA-free by default. GPU and native accelerator support lives in
+separate Capability repositories so each CUDA / LibTorch / OS / RID combination can
+evolve independently.
 
-- **L4: Semantic App**
-- **L3: AI Agent / AAU**  
-  **AAU = Autonomous Agent Unit（自律型エージェント実行単位）**
-- **L2: Pipeline**
-- **L1: Provider**
+現在のリリース系列は **v0.0.5** です。
 
-Together, these layers form the foundation of the **Semantic Context OS**.
+- **AIKernel.NET** は public contracts、DTO、Enum、正典ドキュメントを提供します。
+- **AIKernel.Core** は runtime 実装を提供します。Common monads、Core、Kernel、Hosting、providers、TestKit、Python binding が含まれます。
+- **AIKernel.Cuda13.0** は opt-in の Windows CUDA Capability package を提供します。
 
-これらのレイヤーは、**Semantic Context OS** の基盤を構成します。
+Core package は既定で CUDA-free です。GPU / native accelerator support は
+Capability リポジトリに分離され、CUDA / LibTorch / OS / RID ごとに独立して進化します。
 
----
+## Package Map
 
-## AIKernel Stack — Sovereign Architecture
+| Area | Packages / Repositories |
+| --- | --- |
+| Contracts | `AIKernel.Abstractions`, `AIKernel.Dtos`, `AIKernel.Enums` |
+| Runtime | `AIKernel.Common`, `AIKernel.Core`, `AIKernel.Kernel`, `AIKernel.Hosting` |
+| Providers | `AIKernel.Providers.MicrosoftAI` |
+| Testing | `AIKernel.TestKit` |
+| Python | `aikernel` |
+| CUDA Capability | `AIKernel.Cuda13.0.Libtorch2.12.win-x64` |
 
-**AIKernel Stack — Sovereign Architecture** is a layered architecture for separating applications, agents, reasoning workflows, and providers around Semantic Context.
+`AIKernel.Vfs` is not a separate package. VFS contracts belong to Abstractions,
+and implementation lives in Core/Kernel runtime packages.
 
-**AIKernel Stack — Sovereign Architecture** は、Semantic Context を中心に、アプリケーション、Agent、推論ワークフロー、Provider を分離して扱うための階層構造です。
+`AIKernel.Vfs` は独立 package ではありません。VFS contracts は Abstractions に、
+実装は Core/Kernel runtime packages に配置されます。
 
----
+## Install
 
-### L4: Semantic App — セマンティックアプリ
+### .NET Runtime
 
-A **Semantic App** is the top-level layer that transforms a user's **Semantic Intent** into value.
+```powershell
+dotnet add package AIKernel.Core --version 0.0.5
+dotnet add package AIKernel.Kernel --version 0.0.5
+dotnet add package AIKernel.Hosting --version 0.0.5
+dotnet add package AIKernel.Providers.MicrosoftAI --version 0.0.5
+```
 
-**Semantic App** は、ユーザーの **Semantic Intent** を価値へ変換する最上位レイヤーです。
+### Python Binding
 
-It represents the application-level realization of a purpose by coordinating one or more Agents.
+```powershell
+pip install aikernel
+```
 
-1 つ以上の Agent を統合し、目的をアプリケーションとして具体化します。
+The Python package is CPU-only by default and exposes the outer AIKernel API,
+monad helpers, managed assembly discovery, and DSL composition helpers.
 
-- Converts user intent into meaningful outcomes  
-  ユーザーの意図を意味のある成果へ変換する
-- Coordinates one or more Agents  
-  1 つ以上の Agent を統合・調整する
-- Serves as the application layer of the Semantic Context OS  
-  Semantic Context OS のアプリケーション層として機能する
+Python package は既定で CPU-only です。外側の AIKernel API、monad helpers、
+managed assembly discovery、DSL composition helpers を提供します。
 
----
+### Optional CUDA Capability
 
-### L3: AI Agent / AAU — Autonomous Agent Unit
+```powershell
+dotnet add package AIKernel.Cuda13.0.Libtorch2.12.win-x64 --version 0.0.5
+```
 
-An **AI Agent** is an independent intelligence unit specialized for a specific purpose.
+This package targets Windows `win-x64`, CUDA 13.0, and LibTorch 2.12.0.
+Other CUDA, LibTorch, OS, or RID combinations should be implemented as separate
+Capability repositories using the same public AIKernel contracts.
 
-**AI Agent** は、特定の目的に特化した独立した知能単位です。
+この package は Windows `win-x64`、CUDA 13.0、LibTorch 2.12.0 を対象にします。
+他の CUDA / LibTorch / OS / RID の組み合わせは、同じ public AIKernel contracts に従う
+別 Capability リポジトリとして実装します。
 
-**AAU** stands for **Autonomous Agent Unit**.  
-It represents an Agent as a governed executable unit that can encapsulate Pipelines, Providers, and runtime context.
+## Architecture
 
-**AAU** は **Autonomous Agent Unit（自律型エージェント実行単位）** の略です。  
-Agent を、Pipeline、Provider、実行時コンテキストを内包できる、ガバナンス可能な実行単位として表します。
+AIKernel is organized around a small set of stable boundaries:
 
-An AAU can be loaded from the VFS and executed independently within the Semantic Context OS.
+- **Contracts**: interface-only public boundary for implementations.
+- **Common**: pure functional primitives such as Result, Option, Either, and ResultStep.
+- **Core / Kernel**: deterministic orchestration, DSL execution, ReplayLog, VFS/ROM, and governance.
+- **Providers**: external model or service integrations.
+- **Capabilities**: opt-in native, GPU, solver, or tool modules.
+- **Bindings**: language-facing APIs such as Python.
 
-AAU は VFS からロードされ、Semantic Context OS 内で独立した実行単位として扱われます。
+AIKernel は、安定した境界を中心に構成されます。
 
-- Acts as a purpose-specific intelligence unit  
-  目的特化型の知能単位として機能する
-- Encapsulates Pipelines, Providers, and runtime context  
-  Pipeline、Provider、実行時コンテキストを内包する
-- Operates as a governed executable unit  
-  ガバナンス可能な実行単位として動作する
+- **Contracts**: 実装を結合するための interface-only public boundary。
+- **Common**: Result、Option、Either、ResultStep などの純粋な functional primitives。
+- **Core / Kernel**: 決定論的 orchestration、DSL execution、ReplayLog、VFS/ROM、governance。
+- **Providers**: 外部モデルまたは service integrations。
+- **Capabilities**: opt-in の native / GPU / solver / tool modules。
+- **Bindings**: Python などの language-facing API。
 
----
+## Repositories
 
-### L2: Pipeline — パイプライン
-
-A **Pipeline** defines the logical reasoning workflow of an AI process.
-
-**Pipeline** は、AI プロセスにおける論理的な推論ワークフローを定義します。
-
-It describes how Providers are composed and executed to perform inference, retrieval, transformation, validation, and other AI-related operations.
-
-Provider をどのように組み合わせ、推論・検索・変換・検証などの処理を進めるかを表現します。
-
-- Defines the reasoning workflow  
-  推論ワークフローを定義する
-- Composes Providers into executable processes  
-  Provider を実行可能なプロセスとして構成する
-- Separates logical execution from physical capabilities  
-  論理的な実行手順と物理的な能力を分離する
-
----
-
-### L1: Provider — プロバイダー
-
-A **Provider** is the physical grounding layer of AIKernel.NET.
-
-**Provider** は、AIKernel.NET における物理的な接地レイヤーです。
-
-Providers expose concrete capabilities such as LLMs, embeddings, VFS access, RAG, secure credentials, and other internal or external resources.
-
-Provider は、LLM、Embedding、VFS、RAG、SecureCredential など、内部または外部の具体的な能力を提供します。
-
-- Provides concrete AI and infrastructure capabilities  
-  AI およびインフラストラクチャの具体的な能力を提供する
-- Connects the OS to models, data sources, and external systems  
-  OS をモデル、データソース、外部システムと接続する
-- Acts as the capability unit of the system  
-  システムにおける能力ユニットとして機能する
-
-Examples:
-
-- LLM Provider
-- Embedding Provider
-- VFS Provider
-- RAG Provider
-- SecureCredential Provider
-
----
-
-## Vision: AIStore & Self-Extending AI
-
-AIKernel.NET aims to enable an ecosystem where AI capabilities, Agents, and applications can be composed, distributed, and extended.
-
-AIKernel.NET は、AI の能力、Agent、アプリケーションを構成・配布・拡張できるエコシステムの実現を目指します。
-
-The long-term vision includes:
-
-長期的なビジョンは以下のとおりです。
-
-- **Provider Marketplace**  
-  A marketplace for reusable AI and infrastructure capabilities.  
-  再利用可能な AI 能力およびインフラ能力のマーケット。
-
-- **Agent Marketplace**  
-  A marketplace for purpose-specific Agent units.  
-  目的特化型の Agent 単位を流通させるマーケット。
-
-- **Semantic App Marketplace**  
-  A marketplace for AI applications built on Semantic Context.  
-  Semantic Context を基盤とした AI アプリケーションのマーケット。
-
-- **Self-Extending AI**  
-  AI systems that can extend their own capabilities through governed, composable units.  
-  ガバナンスされた構成可能な単位を通じて、自ら能力を拡張できる AI システム。
-
-- **AIDevOps**  
-  A development model where AI assists in designing, building, testing, and evolving AI systems.  
-  AI が AI システムの設計・実装・検証・進化を支援する開発モデル。
-
----
-
-## Representative Repository
-
-- [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET)
-
----
-
-## Documents
-
-- [AIKernel.NET Documentation](https://github.com/AIKernel-NET/AIKernel.NET/tree/main/docs)
-
----
+- [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET): contracts, DTOs/enums, architecture docs, canonical papers.
+- [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core): runtime packages, monads, DSL, Kernel, providers, Python binding.
+- [AIKernel.Cuda13.0](https://github.com/AIKernel-NET/AIKernel.Cuda13.0): CUDA 13.0 / LibTorch 2.12 / Windows win-x64 capability.
+- [AIKernel.RH](https://github.com/AIKernel-NET/AIKernel.RH): proof-oriented and native capability experiments.
+- [AIKernel.Tools](https://github.com/AIKernel-NET/AIKernel.Tools): tooling and capability helpers.
 
 ## License
 
-AIKernel.NET is released under the MIT License.
+AIKernel projects are released under the **Apache License 2.0** unless a
+repository explicitly states otherwise. Third-party native dependencies keep
+their own licenses and notices.
 
-AIKernel.NET は MIT License の下で公開されています。
+AIKernel projects は、各リポジトリで明示されない限り **Apache License 2.0** で公開されます。
+third-party native dependencies は、それぞれの license / notice を保持します。
