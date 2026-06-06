@@ -124,9 +124,26 @@ AIKernel は、安定した境界を中心に構成されます。
 
 ## License
 
-AIKernel projects are released under the **Apache License 2.0** unless a
-repository explicitly states otherwise. Third-party native dependencies keep
-their own licenses and notices.
+AIKernel uses different licenses by layer:
 
-AIKernel projects は、各リポジトリで明示されない限り **Apache License 2.0** で公開されます。
+| Layer | Scope | License | Reason |
+| --- | --- | --- | --- |
+| AIKernel.NET | Interfaces and DTOs | MIT | Easy standardization; no implementation patent surface |
+| AIKernel.Core | DSL, monads, Kernel abstractions | Apache License 2.0 | Patent grant for runtime architecture |
+| Capability | CUDA, ROCm, DirectML, external modules | Apache License 2.0 | Native/GPU implementation risk |
+| Native ABI | `libtorch_bridge` and C++ bridges | Apache License 2.0 | Native implementation risk |
+| Python | Python binding | Apache License 2.0 | Stronger fit for binary-capable distribution |
+
+AIKernel はレイヤーごとにライセンスを分けます。
+
+| レイヤー | 内容 | ライセンス | 理由 |
+| --- | --- | --- | --- |
+| AIKernel.NET | Interface と DTO | MIT | 標準化しやすく、実装特許面がない |
+| AIKernel.Core | DSL、モナド、Kernel 抽象 | Apache License 2.0 | ランタイムアーキテクチャに特許条項が必要 |
+| Capability | CUDA、ROCm、DirectML、外部 module | Apache License 2.0 | Native/GPU 実装リスクが高い |
+| Native ABI | `libtorch_bridge` などの C++ bridge | Apache License 2.0 | Native 実装リスクが高い |
+| Python | Python binding | Apache License 2.0 | バイナリ配布を含む配布形態に強い |
+
+Third-party native dependencies keep their own licenses and notices.
+
 third-party native dependencies は、それぞれの license / notice を保持します。
