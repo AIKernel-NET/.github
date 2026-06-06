@@ -134,6 +134,10 @@ AIKernel uses different licenses by layer:
 | Native ABI | `libtorch_bridge` and C++ bridges | Apache License 2.0 | Native implementation risk |
 | Python | Python binding | Apache License 2.0 | Stronger fit for binary-capable distribution |
 
+AIKernel.NET contains no implementation and therefore carries no patent surface;
+MIT maximizes interoperability and standardization. Papers and research
+documents follow the license explicitly attached to each paper.
+
 AIKernel はレイヤーごとにライセンスを分けます。
 
 | レイヤー | 内容 | ライセンス | 理由 |
@@ -143,6 +147,10 @@ AIKernel はレイヤーごとにライセンスを分けます。
 | Capability | CUDA、ROCm、DirectML、外部 module | Apache License 2.0 | Native/GPU 実装リスクが高い |
 | Native ABI | `libtorch_bridge` などの C++ bridge | Apache License 2.0 | Native 実装リスクが高い |
 | Python | Python binding | Apache License 2.0 | バイナリ配布を含む配布形態に強い |
+
+AIKernel.NET は実装を含まないため特許面のリスクがなく、MIT により標準化と
+相互運用性を最大化します。論文および研究文書は、各 paper に明示された
+ライセンスに従います。
 
 Third-party native dependencies keep their own licenses and notices.
 
