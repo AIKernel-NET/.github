@@ -21,7 +21,17 @@ Contracts、Monads、Semantic DSL、ReplayLog、Capability Routing、VFS/ROM
 
 ## Release Line
 
-The current release line is **v0.0.5**.
+The current release line is **v0.1.0**. The coordinated package publication is planned for 2026-06-09.
+
+0.1.0 completes the semantic visibility phase: determinism, contract
+boundaries, semantic state, observability, and governed circuits become visible
+across the package family.
+
+> June 6 opened the surface; June 9 completes the rotation.
+>
+> In three days, the system turns 180 degrees — from exposure to coherence,
+> from prototype noise to governed semantics. AIKernel 0.1.0 is the moment the
+> runtime snaps into phase alignment.
 
 - **AIKernel.NET** provides the public contracts, DTOs, enums, and canonical documents.
 - **AIKernel.Core** provides the runtime implementation: Common monads, Core, Kernel, Hosting, providers, TestKit, and Python binding.
@@ -31,7 +41,16 @@ Core packages are CUDA-free by default. GPU and native accelerator support lives
 separate Capability repositories so each CUDA / LibTorch / OS / RID combination can
 evolve independently.
 
-現在のリリース系列は **v0.0.5** です。
+現在のリリース系列は **v0.1.0** です。 パッケージ群の公開予定日は 2026-06-09 です。
+
+0.1.0 は「意味論の可視化フェーズ」を完了します。決定論性、契約境界、
+Semantic State、可観測性、Governed Circuit が package family 全体で可視化されます。
+
+> 6 月 6 日に表層が開き、6 月 9 日に回転が完了する。
+>
+> わずか 3 日で 180 度の反転が起こり──
+> 露出は整合へ、プロトタイプのノイズは統治された意味へと収束する。
+> AIKernel 0.1.0 は、ランタイムが位相整合へと“回転”する瞬間である。
 
 - **AIKernel.NET** は public contracts、DTO、Enum、正典ドキュメントを提供します。
 - **AIKernel.Core** は runtime 実装を提供します。Common monads、Core、Kernel、Hosting、providers、TestKit、Python binding が含まれます。
@@ -62,10 +81,10 @@ and implementation lives in Core/Kernel runtime packages.
 ### .NET Runtime
 
 ```powershell
-dotnet add package AIKernel.Core --version 0.0.5
-dotnet add package AIKernel.Kernel --version 0.0.5
-dotnet add package AIKernel.Hosting --version 0.0.5
-dotnet add package AIKernel.Providers.MicrosoftAI --version 0.0.5
+dotnet add package AIKernel.Core --version 0.1.0
+dotnet add package AIKernel.Kernel --version 0.1.0
+dotnet add package AIKernel.Hosting --version 0.1.0
+dotnet add package AIKernel.Providers.MicrosoftAI --version 0.1.0
 ```
 
 ### Python Binding
@@ -83,7 +102,7 @@ managed assembly discovery、DSL composition helpers を提供します。
 ### Optional CUDA Capability
 
 ```powershell
-dotnet add package AIKernel.Cuda13.0.Libtorch2.12.win-x64 --version 0.0.5
+dotnet add package AIKernel.Cuda13.0.Libtorch2.12.win-x64 --version 0.1.0
 ```
 
 This package targets Windows `win-x64`, CUDA 13.0, and LibTorch 2.12.0.
