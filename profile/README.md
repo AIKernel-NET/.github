@@ -1,197 +1,353 @@
-<div align="center">
+# AIKernel-NET
 
-<img src="https://raw.githubusercontent.com/AIKernel-NET/AIKernel.NET/main/docs/assets/aikernel-logo.png" alt="AIKernel.NET Logo" width="180" />
+AIKernel-NET builds **AIKernel**, an OS-shaped runtime for governed AI
+applications.
 
-# AIKernel.NET
+AIKernel treats models, tools, providers, WebAssembly runtimes, and native
+accelerators as capability-bearing processes. The project focuses on stable
+contracts, deterministic execution context, fail-closed governance, reproducible
+replay, and provider isolation.
 
-**Interface-led runtime architecture for semantic AI systems**
-**Semantic AI システムのための Interface-Led Runtime Architecture**
+AIKernel also provides a modular SDK for building AIOS (AI Operating System)
+distributions. Each repository maps to an OS layer: contracts, kernel runtime,
+providers, control plane, WASM sandbox, GPU backend, observability tools, and
+examples. Users assemble only the layers needed for their own AIOS distribution.
 
-</div>
+AIKernel は AIOS（AI Operating System）ディストリビューションを構築するための
+モジュール式 SDK でもあります。各 repository は OS の層（契約、kernel runtime、
+providers、control plane、WASM sandbox、GPU backend、observability tools、
+examples）に対応し、必要な層だけを組み合わせて独自の AIOS を構築できます。
 
----
+AIKernel also has an official AIOS distribution, codenamed **AIKernel.Monolith**.
+Monolith is the reference AIOS that integrates the Semantic OS layers after the
+0.1.x SDK line stabilizes, embodying semantic runtime, capability graph, and
+governance principles in one unified system.
 
-AIKernel.NET defines a deterministic execution foundation for AI applications:
-contracts, monads, semantic DSLs, replay logs, capability routing, VFS/ROM
-semantics, and governed provider execution.
+AIKernel には、公式 AIOS ディストリビューションである **AIKernel.Monolith** もあります。
+Monolith は 0.1.x 系 SDK の安定化後に、semantic runtime、capability graph、
+governance の思想を統合する標準 AIOS として開発が開始されています。
 
-AIKernel.NET は、AI アプリケーションのための決定論的な実行基盤を定義します。対象は
-Contracts、Monads、Semantic DSL、ReplayLog、Capability Routing、VFS/ROM
-セマンティクス、Governed Provider Execution です。
+## Current Release Line
 
-## Release Line
+The current public package line is **0.1.1**.
 
-The current release line is **v0.1.0**. The coordinated package publication is planned for 2026-06-09.
+Use the same version family across AIKernel packages. Do not mix 0.1.1
+contracts with older Core, Providers, Tools, Wasm, Control, or Demo packages.
 
-0.1.0 completes the semantic visibility phase: determinism, contract
-boundaries, semantic state, observability, and governed circuits become visible
-across the package family.
+## Kernel Sync Day Release Entry
 
-> June 6 opened the surface; June 9 completes the rotation.
->
-> In three days, the system turns 180 degrees — from exposure to coherence,
-> from prototype noise to governed semantics. AIKernel 0.1.0 is the moment the
-> runtime snaps into phase alignment.
-
-- **AIKernel.NET** provides the public contracts, DTOs, enums, and canonical documents.
-- **AIKernel.Core** provides the runtime implementation: Common monads, Core, Kernel, Hosting, providers, TestKit, and Python binding.
-- **AIKernel.Cuda13.0** provides the opt-in Windows CUDA capability package.
-
-Core packages are CUDA-free by default. GPU and native accelerator support lives in
-separate Capability repositories so each CUDA / LibTorch / OS / RID combination can
-evolve independently.
-
-現在のリリース系列は **v0.1.0** です。 パッケージ群の公開予定日は 2026-06-09 です。
-
-0.1.0 は「意味論の可視化フェーズ」を完了します。決定論性、契約境界、
-Semantic State、可観測性、Governed Circuit が package family 全体で可視化されます。
-
-> 6 月 6 日に表層が開き、6 月 9 日に回転が完了する。
->
-> わずか 3 日で 180 度の反転が起こり──
-> 露出は整合へ、プロトタイプのノイズは統治された意味へと収束する。
-> AIKernel 0.1.0 は、ランタイムが位相整合へと“回転”する瞬間である。
-
-- **AIKernel.NET** は public contracts、DTO、Enum、正典ドキュメントを提供します。
-- **AIKernel.Core** は runtime 実装を提供します。Common monads、Core、Kernel、Hosting、providers、TestKit、Python binding が含まれます。
-- **AIKernel.Cuda13.0** は opt-in の Windows CUDA Capability package を提供します。
-
-Core package は既定で CUDA-free です。GPU / native accelerator support は
-Capability リポジトリに分離され、CUDA / LibTorch / OS / RID ごとに独立して進化します。
-
-## Package Map
-
-| Area | Packages / Repositories |
-| --- | --- |
-| Contracts | `AIKernel.Abstractions`, `AIKernel.Dtos`, `AIKernel.Enums` |
-| Runtime | `AIKernel.Common`, `AIKernel.Core`, `AIKernel.Kernel`, `AIKernel.Hosting` |
-| Providers | `AIKernel.Providers.MicrosoftAI` |
-| Testing | `AIKernel.TestKit` |
-| Python | `aikernel-net` / import `aikernel_net` |
-| CUDA Capability | NuGet: `AIKernel.Cuda13.0.Libtorch2.12.win-x64`; pip: `aikernel-cuda13-libtorch2-12-win-x64` |
-
-`AIKernel.Vfs` is not a separate package. VFS contracts belong to Abstractions,
-and implementation lives in Core/Kernel runtime packages.
-
-`AIKernel.Vfs` は独立 package ではありません。VFS contracts は Abstractions に、
-実装は Core/Kernel runtime packages に配置されます。
-
-## Install
-
-### .NET Runtime
-
-```powershell
-dotnet add package AIKernel.Core --version 0.1.0
-dotnet add package AIKernel.Kernel --version 0.1.0
-dotnet add package AIKernel.Hosting --version 0.1.0
-dotnet add package AIKernel.Providers.MicrosoftAI --version 0.1.0
+```text
+You are reading the unified release entry for the AIKernel ecosystem.
+Today is June 10 - Kernel Sync Day - the moment when all semantic surfaces align.
 ```
 
-### Python Binding
+```text
+これは AIKernel エコシステムの統一リリースエントリです。
+本日は 6月10日--Kernel Sync Day--すべてのセマンティック面が同期する日です。
+```
 
-```powershell
+**June 10th, 2026 - Synchronizing the 0.1.1 semantic circuit.**
+**2026年6月10日--0.1.1 のセマンティック回路を同期する。**
+
+Synchronizing the 0.1.1 semantic circuit: the kernel, providers, and control
+plane align into a coherent, governed Semantic OS. 0.1.1 のセマンティック回路を
+同期--カーネル・プロバイダ・制御面が統治された一貫性ある Semantic OS へと整列する。
+
+```text
+[KERNEL.NET] Semantic Circuit: synchronized
+[KERNEL.NET] Providers: registered
+[KERNEL.NET] Control Plane: governed
+```
+
+Today, the Semantic OS becomes unified across all layers. 今日、Semantic OS は
+全レイヤーを横断して統一された姿を手に入れました。
+
+## Boot AIKernel In Three Lines
+
+For the shortest AIKernel OS-style host path, start with Core, Standard
+Providers, and Tools instrumentation:
+
+```bash
+dotnet add package AIKernel.Core --version 0.1.1
+dotnet add package AIKernel.Providers.Standard --version 0.1.1
+dotnet add package AIKernel.Tools.Instrumentation --version 0.1.1
+```
+
+First demo to run: **AIKernel.Demo.CoreRuntime**.
+
+```bash
+dotnet run --project src/AIKernel.Demo.CoreRuntime/AIKernel.Demo.CoreRuntime.csproj -c Release
+```
+
+## Required And Optional Layers
+
+```text
+Required:
+  AIKernel.NET contracts
+    -> AIKernel.Core
+    -> AIKernel.Providers.Standard
+
+Optional:
+  AIKernel.Control   = physical execution engines
+  AIKernel.Wasm      = browser/WebAssembly runtime and WebGPU boundary
+  AIKernel.Cuda13.0  = Windows CUDA 13.0 external Capability
+  External Providers = ChatOpenAI, MicrosoftAI, LocalLlm, ChatHistory, pipeline compiler
+  AIKernel.Tools     = CLI, replay, inspectors, instrumentation
+  AIKernel.Demo      = runnable learning and release validation examples
+```
+
+## Repository Map
+
+| Repository | Role | Start here |
+| --- | --- | --- |
+| [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET) | Contract-first specification packages: abstractions, DTOs, enums, and boundary interfaces. | Install `AIKernel.Abstractions`, `AIKernel.Contracts`, `AIKernel.Dtos`, and `AIKernel.Enums` from the same version line. |
+| [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core) | Deterministic runtime, monads, DSL, ROM/VFS, Kernel, Hosting, and CPU/default package family. | Validate Core before adding external providers or native capability modules. |
+| [AIKernel.Providers](https://github.com/AIKernel-NET/AIKernel.Providers) | Official extension Providers and standard OS driver implementations. | Start with descriptor, manifest, and dry-run validation before enabling live endpoints or native drivers. |
+| [AIKernel.Control](https://github.com/AIKernel-NET/AIKernel.Control) | Physical execution layer for semantic graphs: emulator, CPU/GPU engines, diagnostics, and Bonsai-style execution. | Validate CPU and Emulator paths before binding GPU execution. |
+| [AIKernel.Tools](https://github.com/AIKernel-NET/AIKernel.Tools) | `aik` CLI, replay, inspectors, canonical formatting, instrumentation, and operator tooling. | Install the .NET tool and run the four smoke commands below. |
+| [AIKernel.Wasm](https://github.com/AIKernel-NET/AIKernel.Wasm) | Browser/WebAssembly runtime, WASM Providers, and WebGPU compute boundary. | Run deterministic tests first; keep real browser GPU validation as a manual step. |
+| [AIKernel.Cuda13.0](https://github.com/AIKernel-NET/AIKernel.Cuda13.0) | Windows `win-x64` CUDA 13.0 + LibTorch 2.12 external Capability package. | Use only on trusted Windows GPU hosts that explicitly opt in to CUDA execution. |
+| [AIKernel.Demo](https://github.com/AIKernel-NET/AIKernel.Demo) | Runnable teaching and validation workspace covering the 0.1.1 package family. | Start with CoreRuntime, Contracts, StandardProviders, Providers, Control, Tools, Wasm, and Cuda demos. |
+
+## Repository Entry Points
+
+Use these links when you already know which layer you need.
+
+| Need | Repository | Documentation | Release Notes |
+| --- | --- | --- | --- |
+| Contract vocabulary, DTOs, enums, interface packages | [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET) | [README](https://github.com/AIKernel-NET/AIKernel.NET#readme) / [specs](https://github.com/AIKernel-NET/AIKernel.NET/tree/main/docs/specs) | [Release notes](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/RELEASE_NOTES.md) |
+| Core runtime, Kernel, Hosting, VFS/ROM, monads | [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core) | [README](https://github.com/AIKernel-NET/AIKernel.Core#readme) / [User Guide](https://github.com/AIKernel-NET/AIKernel.Core/blob/main/docs/user-guide/index.md) | [Release notes](https://github.com/AIKernel-NET/AIKernel.Core/blob/main/RELEASE_NOTES.md) |
+| Official Providers and standard OS drivers | [AIKernel.Providers](https://github.com/AIKernel-NET/AIKernel.Providers) | [README](https://github.com/AIKernel-NET/AIKernel.Providers#readme) / [Provider docs](https://github.com/AIKernel-NET/AIKernel.Providers/tree/main/docs) | [Release notes](https://github.com/AIKernel-NET/AIKernel.Providers/blob/main/RELEASE_NOTES.md) |
+| Physical execution engines and Bonsai-style execution | [AIKernel.Control](https://github.com/AIKernel-NET/AIKernel.Control) | [README](https://github.com/AIKernel-NET/AIKernel.Control#readme) / [Control docs](https://github.com/AIKernel-NET/AIKernel.Control/tree/main/docs) | [Release notes](https://github.com/AIKernel-NET/AIKernel.Control/blob/main/RELEASE_NOTES.md) |
+| CLI, replay, inspectors, instrumentation | [AIKernel.Tools](https://github.com/AIKernel-NET/AIKernel.Tools) | [README](https://github.com/AIKernel-NET/AIKernel.Tools#readme) / [CLI docs](https://github.com/AIKernel-NET/AIKernel.Tools/blob/main/docs/cli/index.md) | [Release notes](https://github.com/AIKernel-NET/AIKernel.Tools/blob/main/RELEASE_NOTES.md) |
+| Browser/WASM runtime and WebGPU boundary | [AIKernel.Wasm](https://github.com/AIKernel-NET/AIKernel.Wasm) | [README](https://github.com/AIKernel-NET/AIKernel.Wasm#readme) / [WASM docs](https://github.com/AIKernel-NET/AIKernel.Wasm/tree/main/docs) | [Release notes](https://github.com/AIKernel-NET/AIKernel.Wasm/blob/main/RELEASE_NOTES.md) |
+| Windows CUDA 13.0 + LibTorch external Capability | [AIKernel.Cuda13.0](https://github.com/AIKernel-NET/AIKernel.Cuda13.0) | [README](https://github.com/AIKernel-NET/AIKernel.Cuda13.0#readme) / [distribution guide](https://github.com/AIKernel-NET/AIKernel.Cuda13.0/blob/main/docs/package-distribution.md) | [Release notes](https://github.com/AIKernel-NET/AIKernel.Cuda13.0/blob/main/RELEASE_NOTES.md) |
+| Runnable learning and validation examples | [AIKernel.Demo](https://github.com/AIKernel-NET/AIKernel.Demo) | [README](https://github.com/AIKernel-NET/AIKernel.Demo#readme) / [User Guide](https://github.com/AIKernel-NET/AIKernel.Demo/blob/main/docs/user-guide/index.md) | [Release notes](https://github.com/AIKernel-NET/AIKernel.Demo/blob/main/RELEASE_NOTES.md) |
+
+## Quick Start
+
+Install the CLI:
+
+```bash
+dotnet tool install -g AIKernel.Tools.CLI --version 0.1.1
+```
+
+Run the smallest checks:
+
+```bash
+aik runtime ping
+aik system info
+aik system vfs --vfs-root .
+aik capabilities invoke aikernel.vfs vfs.exists path=README.md
+```
+
+For .NET applications, keep package versions aligned:
+
+```bash
+dotnet add package AIKernel.Core --version 0.1.1
+dotnet add package AIKernel.Hosting --version 0.1.1
+dotnet add package AIKernel.Kernel --version 0.1.1
+```
+
+For Python:
+
+```bash
 pip install aikernel-net
+pip install aikernel-providers
+pip install aikernel-tools
+pip install aikernel-wasm
 ```
 
-The Python package is CPU-only by default and exposes the outer AIKernel API,
-monad helpers, managed assembly discovery, and DSL composition helpers.
+CUDA is a separate explicit opt-in package and does not belong to the default
+Core or Python install path.
 
-Python package は既定で CPU-only です。外側の AIKernel API、monad helpers、
-managed assembly discovery、DSL composition helpers を提供します。
+## NuGet Packages
 
-### Optional CUDA Capability
+NuGet packages are the primary distribution channel for .NET hosts. Keep all
+AIKernel packages on the same public version family.
 
-```powershell
-dotnet add package AIKernel.Cuda13.0.Libtorch2.12.win-x64 --version 0.1.0
+### Contracts
+
+Install these when you need the stable public contract vocabulary without
+runtime implementation:
+
+```bash
+dotnet add package AIKernel.Abstractions --version 0.1.1
+dotnet add package AIKernel.Contracts --version 0.1.1
+dotnet add package AIKernel.Dtos --version 0.1.1
+dotnet add package AIKernel.Enums --version 0.1.1
 ```
 
-This package targets Windows `win-x64`, CUDA 13.0, and LibTorch 2.12.0.
-Other CUDA, LibTorch, OS, or RID combinations should be implemented as separate
-Capability repositories using the same public AIKernel contracts.
+### Core Runtime
 
-NuGet packages are for C# consumers. Python wrappers are distributed through
-pip, not embedded in NuGet packages:
+Install these for deterministic runtime, hosting, Kernel, common monads, and
+contract test helpers:
 
-```powershell
+```bash
+dotnet add package AIKernel.Common --version 0.1.1
+dotnet add package AIKernel.Core --version 0.1.1
+dotnet add package AIKernel.Hosting --version 0.1.1
+dotnet add package AIKernel.Kernel --version 0.1.1
+dotnet add package AIKernel.TestKit --version 0.1.1
+```
+
+### Official Providers
+
+Install only the provider packages your host actually needs:
+
+```bash
+dotnet add package AIKernel.Providers.ChatOpenAI --version 0.1.1
+dotnet add package AIKernel.Providers.ChatHistory --version 0.1.1
+dotnet add package AIKernel.Providers.CudaCompute --version 0.1.1
+dotnet add package AIKernel.Providers.DynamicPipelineCompiler --version 0.1.1
+dotnet add package AIKernel.Providers.LocalLlm --version 0.1.1
+dotnet add package AIKernel.Providers.MicrosoftAI --version 0.1.1
+dotnet add package AIKernel.Providers.Standard --version 0.1.1
+```
+
+### Control, Tools, Wasm, and CUDA
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.1
+
+dotnet add package AIKernel.Tools.Instrumentation --version 0.1.1
+dotnet add package AIKernel.Tools.Capability.RomStorage --version 0.1.1
+dotnet add package AIKernel.Tools.Inspectors.ChatHistoryScraper --version 0.1.1
+dotnet add package AIKernel.Tools.Inspectors.KernelClock --version 0.1.1
+dotnet add package AIKernel.Tools.Inspectors.Vfs --version 0.1.1
+
+dotnet add package AIKernel.Wasm.Runtime --version 0.1.1
+dotnet add package AIKernel.Wasm.WebGpuComputeProvider --version 0.1.1
+
+dotnet add package AIKernel.Cuda13.0.Libtorch2.12.win-x64 --version 0.1.1
+```
+
+`AIKernel.Cuda13.0.Libtorch2.12.win-x64` is Windows `win-x64` only. Its NuGet
+package is lightweight; full CUDA/LibTorch runtime assets are distributed
+through the matching GitHub Release archive.
+
+The CLI is distributed as a .NET tool:
+
+```bash
+dotnet tool install -g AIKernel.Tools.CLI --version 0.1.1
+```
+
+NuGet profile: [AIKernel-NET on NuGet](https://www.nuget.org/profiles/AIKernel-NET)
+
+## PyPI Packages
+
+Python packages are thin wrappers over the public C# package surfaces. They do
+not reimplement AIKernel runtime, provider, governance, tooling, or WASM
+semantics in Python.
+
+```bash
+pip install aikernel-net
+pip install aikernel-governance
+pip install aikernel-providers
+pip install aikernel-tools
+pip install aikernel-wasm
+```
+
+CUDA Python support is also explicit opt-in:
+
+```bash
 pip install aikernel-cuda13-libtorch2-12-win-x64
 ```
 
-The CUDA NuGet package is lightweight: managed assembly, native bridge,
-`loader.json`, and dynamic loading logic. LibTorch, CUDA, cuDNN, cuBLAS, and
-other large runtime DLLs are distributed as GitHub Release runtime archives.
-The CUDA pip package mirrors the lightweight surface for Python users by
-including the managed Capability DLL, native bridge, and `loader.json`; it also
-excludes the large runtime DLLs.
+Import names:
 
-この package は Windows `win-x64`、CUDA 13.0、LibTorch 2.12.0 を対象にします。
-他の CUDA / LibTorch / OS / RID の組み合わせは、同じ public AIKernel contracts に従う
-別 Capability リポジトリとして実装します。
+```python
+import aikernel_net
+import aikernel_governance
+import aikernel_providers
+import aikernel_tools
+import aikernel_wasm
+import aikernel_cuda13_libtorch2_12_win_x64
+```
 
-NuGet package は C# 利用者向けです。Python wrapper は NuGet に含めず、pip で配布します。
-CUDA NuGet package は軽量版であり、managed assembly、native bridge、`loader.json`、
-動的リンクロジックのみを含みます。LibTorch、CUDA、cuDNN、cuBLAS などの巨大 runtime
-DLL は GitHub Release の runtime archive として配布します。
-CUDA pip package も Python 利用者向けの軽量面を持ち、managed Capability DLL、
-native bridge、`loader.json` を含みますが、巨大 runtime DLL は含みません。
+PyPI packages bundle or discover managed assemblies and delegate to the public
+.NET contract surface. Native CUDA runtime assets remain outside the default
+Python install path.
 
-## Architecture
+## Architecture In One Screen
 
-AIKernel is organized around a small set of stable boundaries:
+```text
+AIKernel.NET       = contracts, DTOs, enums, public boundary vocabulary
+AIKernel.Core      = deterministic runtime, monads, DSL, Kernel, VFS/ROM
+AIKernel.Providers = official provider drivers and standard OS drivers
+AIKernel.Control   = physical execution engines and Bonsai-style execution
+AIKernel.Tools     = CLI, replay, inspectors, instrumentation
+AIKernel.Wasm      = browser/WASM runtime and WebGPU boundary
+AIKernel.Cuda13.0  = Windows CUDA external Capability
+AIKernel.Demo      = runnable learning and release validation examples
+```
 
-- **Contracts**: interface-only public boundary for implementations.
-- **Common**: pure functional primitives such as Result, Option, Either, and ResultStep.
-- **Core / Kernel**: deterministic orchestration, DSL execution, ReplayLog, VFS/ROM, and governance.
-- **Providers**: external model or service integrations.
-- **Capabilities**: opt-in native, GPU, solver, or tool modules.
-- **Bindings**: language-facing APIs such as Python.
+## Documentation Principles
 
-AIKernel は、安定した境界を中心に構成されます。
+- Public contracts live in AIKernel.NET and AIKernel.Core.
+- Provider-specific endpoint, credential, and native-driver behavior belongs in
+  AIKernel.Providers or dedicated capability repositories.
+- Tools inspect, invoke, export, and diagnose; they do not own provider
+  implementations.
+- WASM-specific runtime behavior stays in AIKernel.Wasm.
+- Demo projects consume public packages only and should remain safe, dry-run
+  friendly, and educational.
+- Release notes describe public package releases. Development package changes
+  are folded into the next public release note.
 
-- **Contracts**: 実装を結合するための interface-only public boundary。
-- **Common**: Result、Option、Either、ResultStep などの純粋な functional primitives。
-- **Core / Kernel**: 決定論的 orchestration、DSL execution、ReplayLog、VFS/ROM、governance。
-- **Providers**: 外部モデルまたは service integrations。
-- **Capabilities**: opt-in の native / GPU / solver / tool modules。
-- **Bindings**: Python などの language-facing API。
+## 日本語
 
-## Repositories
+AIKernel-NET は、AI アプリケーションを OS のように扱うための **AIKernel**
+を構築しています。
 
-- [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET): contracts, DTOs/enums, architecture docs, canonical papers.
-- [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core): runtime packages, monads, DSL, Kernel, providers, Python binding.
-- [AIKernel.Cuda13.0](https://github.com/AIKernel-NET/AIKernel.Cuda13.0): CUDA 13.0 / LibTorch 2.12 / Windows win-x64 capability.
-- [AIKernel.RH](https://github.com/AIKernel-NET/AIKernel.RH): proof-oriented and native capability experiments.
-- [AIKernel.Tools](https://github.com/AIKernel-NET/AIKernel.Tools): tooling and capability helpers.
+AIKernel は、model、tool、Provider、WebAssembly runtime、native accelerator を
+Capability を持つ process として扱います。重視しているのは、安定した contract、
+決定論的な実行 context、fail-closed governance、reproducible replay、Provider
+isolation です。
 
-## License
+現在の public package line は **0.1.1** です。利用時は AIKernel package の version
+family を揃えてください。0.1.1 の contract と古い Core / Providers / Tools /
+Wasm / Control / Demo package を混在させないでください。
 
-AIKernel uses different licenses by layer:
+AIKernel を最短で起動する場合:
 
-| Layer | Scope | License | Reason |
-| --- | --- | --- | --- |
-| AIKernel.NET | Interfaces and DTOs | MIT | Easy standardization; no implementation patent surface |
-| AIKernel.Core | DSL, monads, Kernel abstractions | Apache License 2.0 | Patent grant for runtime architecture |
-| Capability | CUDA, ROCm, DirectML, external modules | Apache License 2.0 | Native/GPU implementation risk |
-| Native ABI | `libtorch_bridge` and C++ bridges | Apache License 2.0 | Native implementation risk |
-| Python | Python binding | Apache License 2.0 | Stronger fit for binary-capable distribution |
+```bash
+dotnet add package AIKernel.Core --version 0.1.1
+dotnet add package AIKernel.Providers.Standard --version 0.1.1
+dotnet add package AIKernel.Tools.Instrumentation --version 0.1.1
+```
 
-AIKernel.NET contains no implementation and therefore carries no patent surface;
-MIT maximizes interoperability and standardization. Papers and research
-documents follow the license explicitly attached to each paper.
+最初に触るべき demo は **AIKernel.Demo.CoreRuntime** です。
 
-AIKernel はレイヤーごとにライセンスを分けます。
+最初に試す場合:
 
-| レイヤー | 内容 | ライセンス | 理由 |
-| --- | --- | --- | --- |
-| AIKernel.NET | Interface と DTO | MIT | 標準化しやすく、実装特許面がない |
-| AIKernel.Core | DSL、モナド、Kernel 抽象 | Apache License 2.0 | ランタイムアーキテクチャに特許条項が必要 |
-| Capability | CUDA、ROCm、DirectML、外部 module | Apache License 2.0 | Native/GPU 実装リスクが高い |
-| Native ABI | `libtorch_bridge` などの C++ bridge | Apache License 2.0 | Native 実装リスクが高い |
-| Python | Python binding | Apache License 2.0 | バイナリ配布を含む配布形態に強い |
+```bash
+dotnet tool install -g AIKernel.Tools.CLI --version 0.1.1
+aik runtime ping
+aik system info
+aik system vfs --vfs-root .
+aik capabilities invoke aikernel.vfs vfs.exists path=README.md
+```
 
-AIKernel.NET は実装を含まないため特許面のリスクがなく、MIT により標準化と
-相互運用性を最大化します。論文および研究文書は、各 paper に明示された
-ライセンスに従います。
+学習用には [AIKernel.Demo](https://github.com/AIKernel-NET/AIKernel.Demo) を
+入口にしてください。CoreRuntime、Contracts、StandardProviders、Providers、
+Control、Tools、Wasm、Cuda の順に確認すると、AIKernel 0.1.1 の全体像を追えます。
 
-Third-party native dependencies keep their own licenses and notices.
+NuGet は .NET host 向けの配布 channel です。契約だけを使う場合は
+`AIKernel.Abstractions`、`AIKernel.Contracts`、`AIKernel.Dtos`、`AIKernel.Enums`
+を同じ version family で導入してください。実行環境には `AIKernel.Core`、
+`AIKernel.Hosting`、`AIKernel.Kernel` を追加し、必要に応じて
+`AIKernel.Providers.*`、`AIKernel.Control.*`、`AIKernel.Wasm.*`、`AIKernel.Tools.*`
+を導入します。
 
-third-party native dependencies は、それぞれの license / notice を保持します。
+PyPI では `aikernel-net`、`aikernel-governance`、`aikernel-providers`、
+`aikernel-tools`、`aikernel-wasm` を提供します。これらは C# public surface への
+薄い wrapper であり、Python 側で runtime semantics を再実装しません。
+
+各 repository への入口は上記の Repository Entry Points を使ってください。まず全体像を
+学ぶ場合は `AIKernel.Demo`、契約から確認する場合は `AIKernel.NET`、実行 runtime から
+確認する場合は `AIKernel.Core` が入口になります。
