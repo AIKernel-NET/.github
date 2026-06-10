@@ -13,7 +13,7 @@ distributions. Each repository maps to an OS layer: contracts, kernel runtime,
 providers, control plane, WASM sandbox, GPU backend, observability tools, and
 examples. Users assemble only the layers needed for their own AIOS distribution.
 
-AIKernel は AIOS（AI Operating System）ディストリビューションを構築するための
+> AIKernel は AIOS（AI Operating System）ディストリビューションを構築するための
 モジュール式 SDK でもあります。各 repository は OS の層（契約、kernel runtime、
 providers、control plane、WASM sandbox、GPU backend、observability tools、
 examples）に対応し、必要な層だけを組み合わせて独自の AIOS を構築できます。
@@ -23,7 +23,7 @@ Monolith is the reference AIOS that integrates the Semantic OS layers after the
 0.1.x SDK line stabilizes, embodying semantic runtime, capability graph, and
 governance principles in one unified system.
 
-AIKernel には、公式 AIOS ディストリビューションである **AIKernel.Monolith** もあります。
+> AIKernel には、公式 AIOS ディストリビューションである **AIKernel.Monolith** もあります。
 Monolith は 0.1.x 系 SDK の安定化後に、semantic runtime、capability graph、
 governance の思想を統合する標準 AIOS として開発が開始されています。
 
@@ -50,7 +50,8 @@ Today is June 10 - Kernel Sync Day - the moment when all semantic surfaces align
 **2026年6月10日--0.1.1 のセマンティック回路を同期する。**
 
 Synchronizing the 0.1.1 semantic circuit: the kernel, providers, and control
-plane align into a coherent, governed Semantic OS. 0.1.1 のセマンティック回路を
+plane align into a coherent, governed Semantic OS.
+> 0.1.1 のセマンティック回路を
 同期--カーネル・プロバイダ・制御面が統治された一貫性ある Semantic OS へと整列する。
 
 ```text
@@ -59,7 +60,8 @@ plane align into a coherent, governed Semantic OS. 0.1.1 のセマンティッ�
 [KERNEL.NET] Control Plane: governed
 ```
 
-Today, the Semantic OS becomes unified across all layers. 今日、Semantic OS は
+Today, the Semantic OS becomes unified across all layers.
+> 今日、Semantic OS は
 全レイヤーを横断して統一された姿を手に入れました。
 
 ## Boot AIKernel In Three Lines
