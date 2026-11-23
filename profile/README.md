@@ -50,12 +50,12 @@ Start with CPU execution. Add accelerators and external Providers for the worklo
 | リポジトリ / Repository | 責務 / Responsibility |
 | --- | --- |
 | [AIKernel.NET](https://github.com/AIKernel-NET/AIKernel.NET) | 共有インターフェース、DTO、列挙型 / Shared interfaces, DTOs, and enums |
-| [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core) | 実行基盤、ルーティング、ホスティング / Runtime, routing, and hosting |
+| [AIKernel.Core](https://github.com/AIKernel-NET/AIKernel.Core) | 実行基盤、ルーティング、ホスティング。`AIKernel.Kernel` 0.1.4 に CUDA Driver を同梱（ネイティブ依存は NVIDIA ドライバのみ） / Runtime, routing, and hosting. `AIKernel.Kernel` 0.1.4 bundles the CUDA Driver and requires the NVIDIA driver at runtime. |
 | [AIKernel.Providers](https://github.com/AIKernel-NET/AIKernel.Providers) | 外部サービスとローカルエンジンの接続 / Adapters for services and local engines |
 | [AIKernel.Control](https://github.com/AIKernel-NET/AIKernel.Control) | 実行制御と診断 / Execution control and diagnostics |
 | [AIKernel.Tools](https://github.com/AIKernel-NET/AIKernel.Tools) | CLI、実行記録、調査ツール / CLI, execution records, and inspection |
 | [AIKernel.Wasm](https://github.com/AIKernel-NET/AIKernel.Wasm) | ブラウザー実行とWebGPUの境界 / WebAssembly and WebGPU integration |
-| [AIKernel.Cuda13.0](https://github.com/AIKernel-NET/AIKernel.Cuda13.0) | 対応環境向けの追加CUDAバックエンド / Optional CUDA backend for supported systems |
+| [AIKernel.Cuda13.0](https://github.com/AIKernel-NET/AIKernel.Cuda13.0) | 0.1.3 までの旧 LibTorch 参照実装（保守終了・アーカイブ済み） / Legacy LibTorch reference implementation through 0.1.3 (unmaintained and archived). [CUDA Driver 移行ガイド / Migration guide](https://github.com/AIKernel-NET/AIKernel.Providers/blob/dev/docs/CUDA-DRIVER-MIGRATION.md) |
 | [AIKernel.Demo](https://github.com/AIKernel-NET/AIKernel.Demo) | 実行できるサンプル / Runnable examples |
 
 [パッケージごとの責務](https://aikernel.net/docs/architecture/module-map-jp/) · [Package responsibilities](https://aikernel.net/docs/architecture/module-map/) · [APIリファレンス / API reference](https://aikernel.net/reference/) · [お問い合わせ / Contact](https://aikernel.net/contact/)
